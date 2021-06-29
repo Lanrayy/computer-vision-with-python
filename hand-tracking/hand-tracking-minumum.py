@@ -22,7 +22,7 @@ cTime = 0
 # Running a webcam
 while True:
     success, img = cap.read()
-    # covert out image into RGB
+    # covert BGR image into RGB
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = hands.process(imgRGB)
 
@@ -36,6 +36,17 @@ while True:
             # Draw the points on the hand
             # the HAND_CONNECTIONS input will draw the lines between the points of the hands
             mpDraw.draw_landmarks(img, handLandMarks, mpHands.HAND_CONNECTIONS)
+
+            # get the data of the hands
+            for id, lm in enumerate(handLandMarks.landmark):
+                # calculate and print out the location of each landmark of the hand
+                # print(id, lm)
+                h, w, c = img.shape
+                cx, cy = int(lm.x * w), int(lm.y*h)
+                print(id, cx, cy)
+
+
+
 
     cTime = time.time()
     fps = 1/(cTime - pTime)
