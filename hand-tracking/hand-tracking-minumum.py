@@ -44,8 +44,8 @@ while True:
                 h, w, c = img.shape
                 cx, cy = int(lm.x * w), int(lm.y*h)
                 print(id, cx, cy)
-
-
+                if id == 4 or id == 8 or id == 12 or id == 16 or id == 20:
+                    cv2.circle(img, (cx,cy), 15, (255, 0, 255), cv2.FILLED)
 
 
     cTime = time.time()
